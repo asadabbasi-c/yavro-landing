@@ -5,61 +5,95 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yavro - Smart Cart Recovery</title>
   <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <main class="container">
-    <section class="hero">
-      <h1>Recover More Carts. <br /><span class="highlight">Sell Smarter with Yavro</span></h1>
-      <p>
-        Yavro helps eCommerce stores recover abandoned carts and boost sales with smart, AI-powered WhatsApp and Instagram DMs.
-      </p>
-      <div class="cta">
-        <button onclick="openWaitlistForm()">Join the Waitlist</button>
-        <p class="waitlist-count">🔄 <span id="waitlist-count"></span> people have already joined</p>
-      </div>
-    </section>
-    <!-- Other sections will go here -->
-  </main>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <div id="waitlist-form" class="popup hidden">
-    <div class="form-container">
-      <h2>Join the Waitlist</h2>
-      <form id="waitlistForm">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <input type="text" name="country" placeholder="Your Country" required />
-        <input type="text" name="shop" placeholder="Shop Name" required />
+</head>
+
+<!-- Waitlist Modal -->
+<div id="waitlist-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Join the Yavro Waitlist</h2>
+      <form action="https://formsubmit.co/asad.abbasi1@gmail.com" method="POST" id="waitlist-form">
+        <!-- Hidden fields -->
+        <input type="hidden" name="_subject" value="Yavro Waitlist" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="box" />
+  
+        <label>Name:</label>
+        <input type="text" name="Name" required />
+  
+        <label>Email:</label>
+        <input type="email" name="Email" required />
+  
+        <label>Country:</label>
+        <input type="text" name="Country" required />
+  
+        <label>Shop Name:</label>
+        <input type="text" name="ShopName" required />
+  
         <button type="submit">Submit</button>
-        <p id="form-status"></p>
       </form>
-      <button class="close-btn" onclick="closeWaitlistForm()">×</button>
+      <p id="form-message" class="hidden"></p>
+      <button onclick="closeModal()" class="close-btn">Close</button>
     </div>
   </div>
+  
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Recover More Carts. <span>Sell Smarter with Yavro</span></h1>
+    <p>AI-powered WhatsApp and Instagram DMs to recover abandoned carts and drive conversions for eCommerce brands.</p>
+    <button onclick="joinWaitlist()">Join the Waitlist (<span id="waitlist-count"></span>)</button>
+  </section>
 
+  <!-- Introduction Section -->
+  <section class="features">
+    <div class="feature-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3771/3771504.png" alt="AI Icon" />
+      <h3>AI-Driven Cart Recovery</h3>
+      <p>Automated and personalized messages triggered by user behavior.</p>
+    </div>
+    <div class="feature-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp Icon" />
+      <h3>WhatsApp & Instagram</h3>
+      <p>Engage with customers directly where they actually read and respond.</p>
+    </div>
+    <div class="feature-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Shop Icon" />
+      <h3>Built for Shopify & Woo</h3>
+      <p>Integrates effortlessly with your existing online store.</p>
+    </div>
+  </section>
+
+  <!-- Join Waitlist CTA -->
+  <section class="cta">
+    <h2>Be the first to use Yavro</h2>
+    <p>Join hundreds already signed up to recover their lost carts automatically.</p>
+    <input type="email" placeholder="Your email" />
+    <button onclick="joinWaitlist()">Join the Waitlist</button>
+    <div class="count-display">
+      <span id="waitlist-count-cta"></span> people already on the waitlist 🚀
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Yavro. All rights reserved. <a href="privacy/index.html">Privacy Policy</a></p>
+    <p>© 2025 Yavro Technologies. All rights reserved.</p>
+    <a href="privacy/privacypolicy.html">Privacy Policy</a>
   </footer>
-
+  <script src="main.js"></script>
   <script>
-    // Fake viral counter logic
-    const baseDate = new Date("2025-07-12");
-    const startCount = 0;
-    const perDayGrowth = 10;
-
+    // Simulate waitlist count (starts at 187 and adds 15 per day)
+    const startDate = new Date("2025-07-10");
     const today = new Date();
-    const daysPassed = Math.floor((today - baseDate) / (1000 * 60 * 60 * 24));
-    const currentCount = startCount + daysPassed * perDayGrowth;
+    const daysPassed = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+    const baseCount = 187;
+    const total = baseCount + daysPassed * 15;
+    document.getElementById("waitlist-count").innerText = total;
+    document.getElementById("waitlist-count-cta").innerText = total;
 
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("waitlist-count").textContent = currentCount.toLocaleString();
-    });
-
-    function openWaitlistForm() {
-      document.getElementById("waitlist-form").classList.remove("hidden");
-    }
-
-    function closeWaitlistForm() {
-      document.getElementById("waitlist-form").classList.add("hidden");
+    function joinWaitlist() {
+      alert("Thanks for joining the waitlist! You'll be notified soon.");
     }
   </script>
 </body>
