@@ -6,39 +6,36 @@
   <title>Yavro - Smart Cart Recovery</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
 </head>
-
-<!-- Waitlist Modal -->
-<div id="waitlist-modal" class="modal hidden">
+<body>
+  <!-- Waitlist Modal -->
+  <div id="waitlist-modal" class="modal hidden">
     <div class="modal-content">
       <h2>Join the Yavro Waitlist</h2>
       <form action="https://formsubmit.co/asad.abbasi1@gmail.com" method="POST" id="waitlist-form">
-        <!-- Hidden fields -->
         <input type="hidden" name="_subject" value="Yavro Waitlist" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_template" value="box" />
-  
+
         <label>Name:</label>
         <input type="text" name="Name" required />
-  
+
         <label>Email:</label>
         <input type="email" name="Email" required />
-  
+
         <label>Country:</label>
         <input type="text" name="Country" required />
-  
+
         <label>Shop Name:</label>
         <input type="text" name="ShopName" required />
-  
+
         <button type="submit">Submit</button>
       </form>
       <p id="form-message" class="hidden"></p>
       <button onclick="closeModal()" class="close-btn">Close</button>
     </div>
   </div>
-  
-<body>
+
   <!-- Hero Section -->
   <section class="hero">
     <h1>Recover More Carts. <span>Sell Smarter with Yavro</span></h1>
@@ -81,19 +78,25 @@
     <p>© 2025 Yavro Technologies. All rights reserved.</p>
     <a href="privacy/privacypolicy.html">Privacy Policy</a>
   </footer>
-  <script src="main.js"></script>
+
+  <!-- JavaScript -->
   <script>
-    // Simulate waitlist count (starts at 187 and adds 15 per day)
+    // Waitlist counter logic
     const startDate = new Date("2025-07-10");
     const today = new Date();
     const daysPassed = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-    const baseCount = 187;
-    const total = baseCount + daysPassed * 15;
+    const baseCount = 0;
+    const total = baseCount + daysPassed * 10;
+
     document.getElementById("waitlist-count").innerText = total;
     document.getElementById("waitlist-count-cta").innerText = total;
 
     function joinWaitlist() {
-      alert("Thanks for joining the waitlist! You'll be notified soon.");
+      document.getElementById("waitlist-modal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+      document.getElementById("waitlist-modal").classList.add("hidden");
     }
   </script>
 </body>
