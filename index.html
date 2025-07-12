@@ -14,16 +14,16 @@
       <h2>Join the Yavro Waitlist</h2>
       <form id="waitlist-form">
         <label>Name:</label>
-        <input type="text" name="Name" required />
+        <input type="text" name="name" required />
       
         <label>Email:</label>
         <input type="email" name="email" required />
       
         <label>Country:</label>
-        <input type="text" name="Country" required />
+        <input type="text" name="country" required />
       
         <label>Shop Name:</label>
-        <input type="text" name="Shopname" required />
+        <input type="text" name="shopname" required />
       
         <button type="submit">Submit</button>
       </form>
@@ -95,18 +95,25 @@
     function closeModal() {
       document.getElementById("waitlist-modal").classList.add("hidden");
     }
-    document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
+ 
+document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
   e.preventDefault();
-  const form = e.target;
+
+  const name = document.querySelector('input[name="name"]').value;
+  const email = document.querySelector('input[name="email"]').value;
+  const country = document.querySelector('input[name="country"]').value;
+  const shopname = document.querySelector('input[name="shopname"]').value;
 
   const data = {
     data: {
-      name: form.name.value,
-      email: form.email.value,
-      country: form.country.value,
-      shopname: form.shopname.value
+      name,
+      email,
+      country,
+      shopname
     }
   };
+
+  console.log("Submitting:", data);
 
   try {
     const res = await fetch("https://sheetdb.io/api/v1/801d34t740et7", {
@@ -117,18 +124,23 @@
       body: JSON.stringify(data)
     });
 
+    const result = await res.json();
+    console.log("Response:", result);
+
     if (res.ok) {
       document.getElementById("form-message").textContent = "✅ You're on the list!";
       document.getElementById("form-message").classList.remove("hidden");
-      form.reset();
+      document.getElementById("waitlist-form").reset();
     } else {
       throw new Error("Submission failed");
     }
   } catch (err) {
+    console.error("Error submitting:", err);
     document.getElementById("form-message").textContent = "❌ Something went wrong. Try again.";
     document.getElementById("form-message").classList.remove("hidden");
   }
 });
+
 
   </script>
 </body>
