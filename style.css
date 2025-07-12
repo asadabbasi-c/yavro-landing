@@ -217,4 +217,15 @@
     font-weight: bold;
     text-align: center;
   }
+
+  .site-header {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    height: 60px;
+    object-fit: contain;
+  }
   
