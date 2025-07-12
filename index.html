@@ -12,25 +12,22 @@
   <div id="waitlist-modal" class="modal hidden">
     <div class="modal-content">
       <h2>Join the Yavro Waitlist</h2>
-      <form action="https://formsubmit.co/asad.abbasi1@gmail.com" method="POST" id="waitlist-form">
-        <input type="hidden" name="_subject" value="Yavro Waitlist" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_template" value="box" />
-
+      <form id="waitlist-form">
         <label>Name:</label>
         <input type="text" name="Name" required />
-
+      
         <label>Email:</label>
-        <input type="email" name="Email" required />
-
+        <input type="email" name="email" required />
+      
         <label>Country:</label>
         <input type="text" name="Country" required />
-
+      
         <label>Shop Name:</label>
-        <input type="text" name="ShopName" required />
-
+        <input type="text" name="Shopname" required />
+      
         <button type="submit">Submit</button>
       </form>
+      <p id="form-message" class="hidden"></p>
       <p id="form-message" class="hidden"></p>
       <button onclick="closeModal()" class="close-btn">Close</button>
     </div>
@@ -98,6 +95,41 @@
     function closeModal() {
       document.getElementById("waitlist-modal").classList.add("hidden");
     }
+    document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const form = e.target;
+
+  const data = {
+    data: {
+      name: form.name.value,
+      email: form.email.value,
+      country: form.country.value,
+      shopname: form.shopname.value
+    }
+  };
+
+  try {
+    const res = await fetch("https://sheetdb.io/api/v1/801d34t740et7", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (res.ok) {
+      document.getElementById("form-message").textContent = "✅ You're on the list!";
+      document.getElementById("form-message").classList.remove("hidden");
+      form.reset();
+    } else {
+      throw new Error("Submission failed");
+    }
+  } catch (err) {
+    document.getElementById("form-message").textContent = "❌ Something went wrong. Try again.";
+    document.getElementById("form-message").classList.remove("hidden");
+  }
+});
+
   </script>
 </body>
 </html>
