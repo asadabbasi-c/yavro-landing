@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yavro – Smart AI Cart Recovery for Shopify & WooCommerce</title>
-  <meta name="description" content="Yavro helps eCommerce brands recover abandoned carts via AI-powered WhatsApp & Instagram DMs. Recover Shopify carts effortlessly and grow sales." />
+  <meta name="description" content="Yavro helps eCommerce brands recover abandoned carts via AI-powered WhatsApp & Instagram DMs. No coding. Just more conversions." />
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="canonical" href="https://yavro.shop/" />
@@ -37,12 +37,16 @@
       <form id="waitlist-form">
         <label>Name:</label>
         <input type="text" name="name" required />
+
         <label>Email:</label>
         <input type="email" name="email" required />
+
         <label>Country:</label>
         <input type="text" name="country" required />
+
         <label>Shop Name:</label>
         <input type="text" name="shopname" required />
+
         <button type="submit">Submit</button>
       </form>
       <p id="form-message" class="hidden"></p>
@@ -53,7 +57,7 @@
   <!-- Hero Section -->
   <section class="hero">
     <h1>Recover More Carts. <span>Sell Smarter with Yavro</span></h1>
-    <p>Yavro is the best abandoned cart recovery tool for Shopify and WooCommerce. Recover lost sales using AI-powered WhatsApp and Instagram messaging.</p>
+    <p>AI-powered WhatsApp and Instagram DMs to recover abandoned carts and drive conversions for eCommerce brands.</p>
     <button onclick="joinWaitlist()">Join the Waitlist (<span id="waitlist-count"></span>)</button>
   </section>
 
@@ -62,24 +66,24 @@
     <div class="feature-card">
       <img src="https://cdn-icons-png.flaticon.com/512/3771/3771504.png" alt="AI Icon" />
       <h3>AI-Driven Cart Recovery</h3>
-      <p>Automated and personalized messages triggered by shopper behavior to increase conversion rates.</p>
+      <p>Automated and personalized messages triggered by user behavior.</p>
     </div>
     <div class="feature-card">
       <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp Icon" />
-      <h3>WhatsApp & Instagram Integration</h3>
-      <p>Engage customers where they respond best. 90%+ open rates on Meta’s messaging apps.</p>
+      <h3>WhatsApp & Instagram</h3>
+      <p>Engage with customers directly where they actually read and respond.</p>
     </div>
     <div class="feature-card">
       <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Shop Icon" />
-      <h3>Built for Shopify & WooCommerce</h3>
-      <p>Install and go live in minutes. No developers required. Works seamlessly with your store.</p>
+      <h3>Built for Shopify & Woo</h3>
+      <p>Integrates effortlessly with your existing online store.</p>
     </div>
   </section>
 
   <!-- Join Waitlist CTA -->
   <section class="cta">
     <h2>Be the first to use Yavro</h2>
-    <p>Join 1,000+ eCommerce founders using Yavro to recover lost carts with automated outreach.</p>
+    <p>Join hundreds already signed up to recover their lost carts automatically.</p>
     <input type="email" placeholder="Your email" />
     <button onclick="joinWaitlist()">Join the Waitlist</button>
     <div class="count-display">
@@ -88,14 +92,22 @@
   </section>
 
   <!-- Blog Section -->
-  <section class="blog-preview">
-    <h2>Yavro Blog: Learn & Grow</h2>
-    <p>Explore top tips to recover carts, boost conversion rates, and scale your DTC brand.</p>
-    <ul>
-      <li><a href="#">5 Proven Cart Recovery Tactics for Shopify Stores</a></li>
-      <li><a href="#">Why WhatsApp Outperforms Email in Abandoned Cart Recovery</a></li>
-      <li><a href="#">How AI Messaging Increases Your Repeat Purchases</a></li>
-    </ul>
+  <section class="blog-tiles">
+    <div class="tile">
+      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055644.png" alt="Conversion Icon" />
+      <h3>Boost Conversions</h3>
+      <p>Explore strategies to turn window shoppers into loyal customers using behavioral insights and AI tools.</p>
+    </div>
+    <div class="tile">
+      <img src="https://cdn-icons-png.flaticon.com/512/9068/9068861.png" alt="Messaging Automation" />
+      <h3>Automated Messaging</h3>
+      <p>Learn how automated WhatsApp & Instagram messages can help recover abandoned carts effectively.</p>
+    </div>
+    <div class="tile">
+      <img src="https://cdn-icons-png.flaticon.com/512/5933/5933613.png" alt="Customer Retention Icon" />
+      <h3>Customer Retention</h3>
+      <p>Discover retention hacks and communication workflows that reduce churn and increase repeat sales.</p>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -133,25 +145,17 @@
       const shopname = document.querySelector('input[name="shopname"]').value;
 
       const data = {
-        data: {
-          name,
-          email,
-          country,
-          shopname
-        }
+        data: { name, email, country, shopname }
       };
 
       try {
         const res = await fetch("https://sheetdb.io/api/v1/801d34t740et7", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
         });
 
         const result = await res.json();
-
         if (res.ok) {
           document.getElementById("form-message").textContent = "✅ You're on the list!";
           document.getElementById("form-message").classList.remove("hidden");
