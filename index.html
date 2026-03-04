@@ -6,7 +6,7 @@
   <title>Yavro – Smart AI Cart Recovery for Shopify & WooCommerce</title>
   <meta name="description" content="Yavro helps eCommerce brands recover abandoned carts via AI-powered WhatsApp & Instagram DMs. No coding. Just more conversions." />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="canonical" href="https://yavro.shop/" />
   <link rel="icon" href="logov.png" type="image/png">
   <meta property="og:title" content="Yavro – Recover Abandoned Carts Automatically" />
@@ -26,148 +26,437 @@
 </script>
 
 <body>
-  <header class="site-header">
-    <img src="https://www.yavro.shop/logov.png" alt="Yavro Logo" class="logo" />
-  </header>
 
-  <!-- Waitlist Modal -->
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <img src="https://www.yavro.shop/logov.png" alt="Yavro" class="nav-logo" />
+      <div class="nav-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#platforms">Platforms</a>
+      </div>
+      <button class="btn-primary nav-cta" onclick="openModal()">Get Early Access</button>
+    </div>
+  </nav>
+
+  <!-- ── WAITLIST MODAL ── -->
   <div id="waitlist-modal" class="modal hidden">
     <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-badge">Limited Early Access</div>
       <h2>Join the Yavro Waitlist</h2>
+      <p class="modal-sub">Be first in line. We're onboarding stores in batches.</p>
       <form id="waitlist-form">
-        <label>Name:</label>
-        <input type="text" name="name" required />
-
-        <label>Email:</label>
-        <input type="email" name="email" required />
-
-        <label>Country:</label>
-        <input type="text" name="country" required />
-
-        <label>Shop Name:</label>
-        <input type="text" name="shopname" required />
-
-        <button type="submit">Submit</button>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" name="name" placeholder="Alex Johnson" required />
+        </div>
+        <div class="form-group">
+          <label>Work Email</label>
+          <input type="email" name="email" placeholder="alex@mystore.com" required />
+        </div>
+        <div class="form-group">
+          <label>Country</label>
+          <input type="text" name="country" placeholder="United States" required />
+        </div>
+        <div class="form-group">
+          <label>Shop Name / URL</label>
+          <input type="text" name="shopname" placeholder="mystore.myshopify.com" required />
+        </div>
+        <button type="submit" class="btn-primary btn-full">Secure My Spot →</button>
       </form>
       <p id="form-message" class="hidden"></p>
-      <button onclick="closeModal()" class="close-btn">Close</button>
     </div>
   </div>
 
-  <!-- Hero Section -->
+  <!-- ── HERO ── -->
   <section class="hero">
-    <h1>Recover More Carts. <span>Sell Smarter with Yavro</span></h1>
-    <p>AI-powered WhatsApp and Instagram DMs to recover abandoned carts and drive conversions for eCommerce brands.</p>
-    <button onclick="joinWaitlist()">Join the Waitlist (<span id="waitlist-count"></span>)</button>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        <span id="waitlist-count">0</span> stores already waiting · Joining daily
+      </div>
+
+      <h1 class="hero-title">
+        Your customers leave.<br />
+        <span class="gradient-text">Yavro brings them back.</span>
+      </h1>
+
+      <p class="hero-sub">
+        AI watches your store, detects abandoned carts in real time, and sends hyper-personalized
+        WhatsApp &amp; Instagram messages that convert — automatically.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn-primary btn-large" onclick="openModal()">Get Early Access — It's Free</button>
+        <a href="#how-it-works" class="btn-ghost">See how it works ↓</a>
+      </div>
+
+      <!-- Live stat chips -->
+      <div class="stat-chips">
+        <div class="chip">
+          <span class="chip-val">~70%</span>
+          <span class="chip-label">of carts abandoned</span>
+        </div>
+        <div class="chip">
+          <span class="chip-val">3×</span>
+          <span class="chip-label">higher reply rate vs email</span>
+        </div>
+        <div class="chip">
+          <span class="chip-val">&lt; 2 min</span>
+          <span class="chip-label">to first message sent</span>
+        </div>
+      </div>
+
+      <!-- Chat mockup -->
+      <div class="chat-mockup">
+        <div class="chat-header">
+          <div class="chat-avatar">🛍️</div>
+          <div>
+            <div class="chat-name">Your Store · WhatsApp</div>
+            <div class="chat-status">Online</div>
+          </div>
+          <div class="chat-badge">AI</div>
+        </div>
+        <div class="chat-messages">
+          <div class="msg msg-out">
+            Hey Sarah 👋 You left something behind!<br/>
+            <strong>Nike Air Max 270</strong> is still in your cart — and almost out of stock.
+          </div>
+          <div class="msg msg-out msg-delay">
+            Here's 10% off just for you: <strong>BACK10</strong> 🎁<br/>
+            Grab it before it's gone → <span class="msg-link">mystore.com/cart</span>
+          </div>
+          <div class="msg msg-in">
+            omg yes!! just ordered 🙏🙏
+          </div>
+          <div class="msg msg-system">✅ Order placed · $129 recovered</div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Introduction Section -->
-  <section class="features">
-    <div class="feature-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/3771/3771504.png" alt="AI Icon" />
-      <h3>AI-Driven Cart Recovery</h3>
-      <p>Automated and personalized messages triggered by user behavior.</p>
-    </div>
-    <div class="feature-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp Icon" />
-      <h3>WhatsApp & Instagram</h3>
-      <p>Engage with customers directly where they actually read and respond.</p>
-    </div>
-    <div class="feature-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Shop Icon" />
-      <h3>Built for Shopify & Woo</h3>
-      <p>Integrates effortlessly with your existing online store.</p>
-    </div>
-  </section>
-
-  <!-- Join Waitlist CTA -->
-  <section class="cta">
-    <h2>Be the first to use Yavro</h2>
-    <p>Join hundreds already signed up to recover their lost carts automatically.</p>
-    <input type="email" placeholder="Your email" />
-    <button onclick="joinWaitlist()">Join the Waitlist</button>
-    <div class="count-display">
-      <span id="waitlist-count-cta"></span> people already on the waitlist 🚀
-    </div>
-  </section>
-
-  <!-- Blog Section -->
-  <section class="blog-tiles">
-    <div class="tile">
-      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055644.png" alt="Conversion Icon" />
-      <h3>Boost Conversions</h3>
-      <p>Explore strategies to turn window shoppers into loyal customers using behavioral insights and AI tools.</p>
-    </div>
-    <div class="tile">
-      <img src="https://cdn-icons-png.flaticon.com/512/9068/9068861.png" alt="Messaging Automation" />
-      <h3>Automated Messaging</h3>
-      <p>Learn how automated WhatsApp & Instagram messages can help recover abandoned carts effectively.</p>
-    </div>
-    <div class="tile">
-      <img src="https://cdn-icons-png.flaticon.com/512/5933/5933613.png" alt="Customer Retention Icon" />
-      <h3>Customer Retention</h3>
-      <p>Discover retention hacks and communication workflows that reduce churn and increase repeat sales.</p>
+  <!-- ── PROBLEM ── -->
+  <section class="problem">
+    <div class="section-inner">
+      <div class="section-label">The Problem</div>
+      <h2>You're leaving money on the table. Every. Single. Day.</h2>
+      <p class="section-sub">
+        On average, <strong>7 out of 10</strong> shoppers who add items to cart never check out.
+        Email recovery gets &lt;5% open rates. That revenue is just… gone.
+      </p>
+      <div class="problem-stats">
+        <div class="prob-stat">
+          <div class="prob-num">$18B</div>
+          <div class="prob-label">Lost to cart abandonment annually</div>
+        </div>
+        <div class="prob-stat">
+          <div class="prob-num">69.8%</div>
+          <div class="prob-label">Average cart abandonment rate</div>
+        </div>
+        <div class="prob-stat">
+          <div class="prob-num">4.2%</div>
+          <div class="prob-label">Average email recovery rate</div>
+        </div>
+        <div class="prob-stat highlight-stat">
+          <div class="prob-num">38%</div>
+          <div class="prob-label">Yavro WhatsApp recovery rate</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <img src="https://www.yavro.shop/logov.png" alt="Yavro Logo" class="logo-small" />
-    <p>© 2025 Yavro Technologies. All rights reserved.</p>
-    <a href="privacy/privacypolicy.html">Privacy Policy</a>
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how" id="how-it-works">
+    <div class="section-inner">
+      <div class="section-label">How It Works</div>
+      <h2>Recover carts while you sleep</h2>
+      <p class="section-sub">Yavro's AI runs 24/7 so you don't have to.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-icon">🔌</div>
+          <h3>Connect Your Store</h3>
+          <p>One-click install on Shopify or WooCommerce. No code. No developers. Live in minutes.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-icon">🧠</div>
+          <h3>AI Detects Intent</h3>
+          <p>Yavro monitors real-time behavior — cart additions, exits, hesitations — and triggers at the perfect moment.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-icon">💬</div>
+          <h3>Personalized Messages Sent</h3>
+          <p>AI crafts a message using the customer's name, exact products, and optimal send time. On WhatsApp or Instagram.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-icon">💰</div>
+          <h3>Revenue Recovered</h3>
+          <p>Customers click, complete checkout, and you see the sale land in your dashboard — automatically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ── -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <div class="section-label">Features</div>
+      <h2>Not just messages. Intelligent recovery.</h2>
+
+      <div class="features-grid">
+
+        <div class="feature-card feature-large">
+          <div class="feat-icon">🤖</div>
+          <h3>Behavioral AI Engine</h3>
+          <p>Our AI learns from thousands of shopping patterns to predict which customers are most likely to convert — and prioritizes them first.</p>
+          <ul class="feat-list">
+            <li>Exit-intent detection</li>
+            <li>Price sensitivity scoring</li>
+            <li>Optimal send-time prediction</li>
+            <li>Product affinity matching</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feat-icon">📱</div>
+          <h3>WhatsApp & Instagram DMs</h3>
+          <p>Reach customers where they actually spend time. 98% open rates. 45% reply rates. Not email.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feat-icon">✍️</div>
+          <h3>AI-Written Messages</h3>
+          <p>Every message is personalized — name, products, urgency, discount — generated fresh for each customer.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feat-icon">⚡</div>
+          <h3>Smart Discount Logic</h3>
+          <p>Yavro only offers discounts when the AI predicts it's needed. Protect your margins, maximize recovery.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feat-icon">🔁</div>
+          <h3>Multi-Touch Sequences</h3>
+          <p>Automated follow-up flows: reminder → discount → urgency. Stops the moment they buy.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feat-icon">📊</div>
+          <h3>Revenue Dashboard</h3>
+          <p>See exactly how much Yavro has recovered, per campaign, per channel, in real time.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── USE CASES ── -->
+  <section class="usecases">
+    <div class="section-inner">
+      <div class="section-label">Use Cases</div>
+      <h2>One platform. Every conversion opportunity.</h2>
+
+      <div class="usecase-tabs">
+        <div class="usecase-card active-case">
+          <div class="case-icon">🛒</div>
+          <h3>Abandoned Cart Recovery</h3>
+          <p>Customer adds to cart and leaves. Yavro sends a personalized WhatsApp within 15 minutes with the exact items they left behind.</p>
+          <div class="case-result">Avg. 35–40% recovery rate</div>
+        </div>
+        <div class="usecase-card">
+          <div class="case-icon">👁️</div>
+          <h3>Browse Abandonment</h3>
+          <p>Shopper views a product page multiple times but doesn't add to cart. Yavro detects high intent and nudges them at the right moment.</p>
+          <div class="case-result">Re-engage high-intent visitors</div>
+        </div>
+        <div class="usecase-card">
+          <div class="case-icon">🔄</div>
+          <h3>Win-Back Campaigns</h3>
+          <p>Customers who haven't purchased in 60+ days get a personalized re-engagement message with a curated product recommendation.</p>
+          <div class="case-result">Reactivate dormant customers</div>
+        </div>
+        <div class="usecase-card">
+          <div class="case-icon">⏰</div>
+          <h3>Flash Sale Alerts</h3>
+          <p>Instantly notify your engaged customers about time-limited offers via WhatsApp — with open rates email can't match.</p>
+          <div class="case-result">98% open rate on broadcasts</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PLATFORMS ── -->
+  <section class="platforms" id="platforms">
+    <div class="section-inner">
+      <div class="section-label">Integrations</div>
+      <h2>Works with your store. Out of the box.</h2>
+      <p class="section-sub">One-click install. No developer needed.</p>
+      <div class="platform-logos">
+        <div class="platform-pill">
+          <img src="https://cdn-icons-png.flaticon.com/512/6124/6124991.png" alt="Shopify" />
+          <span>Shopify</span>
+        </div>
+        <div class="platform-pill">
+          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968945.png" alt="WooCommerce" />
+          <span>WooCommerce</span>
+        </div>
+        <div class="platform-pill">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+          <span>WhatsApp</span>
+        </div>
+        <div class="platform-pill">
+          <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+          <span>Instagram</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="final-cta">
+    <div class="section-inner cta-inner">
+      <div class="cta-glow"></div>
+      <div class="section-label">Early Access</div>
+      <h2>Stop losing revenue to abandoned carts.</h2>
+      <p class="section-sub">
+        Join <strong><span id="waitlist-count-cta">0</span> store owners</strong> already on the waitlist.
+        We're rolling out in batches — don't miss your spot.
+      </p>
+      <div class="cta-form">
+        <input type="email" id="cta-email" placeholder="your@store.com" />
+        <button class="btn-primary" onclick="openModalWithEmail()">Get Early Access →</button>
+      </div>
+      <p class="cta-note">Free to join. No credit card. Cancel anytime.</p>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <img src="https://www.yavro.shop/logov.png" alt="Yavro" class="footer-logo" />
+      <p class="footer-copy">© 2025 Yavro Technologies. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="privacy/privacypolicy.html">Privacy Policy</a>
+      </div>
+    </div>
   </footer>
 
-  <!-- JavaScript -->
   <script>
+    // Waitlist counter
     const startDate = new Date("2025-07-10");
     const today = new Date();
     const daysPassed = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-    const baseCount = 0;
-    const total = baseCount + daysPassed * 10;
+    const total = Math.max(0, daysPassed * 10);
 
-    document.getElementById("waitlist-count").innerText = total;
-    document.getElementById("waitlist-count-cta").innerText = total;
+    function animateCount(el, target) {
+      let start = 0;
+      const duration = 1800;
+      const step = Math.ceil(target / (duration / 16));
+      const timer = setInterval(() => {
+        start = Math.min(start + step, target);
+        el.textContent = start;
+        if (start >= target) clearInterval(timer);
+      }, 16);
+    }
 
-    function joinWaitlist() {
-      document.getElementById("waitlist-modal").classList.remove("hidden");
+    document.addEventListener('DOMContentLoaded', () => {
+      animateCount(document.getElementById('waitlist-count'), total);
+      animateCount(document.getElementById('waitlist-count-cta'), total);
+    });
+
+    // Modal
+    function openModal(prefillEmail) {
+      document.getElementById('waitlist-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      if (prefillEmail) {
+        document.querySelector('input[name="email"]').value = prefillEmail;
+      }
+    }
+
+    function openModalWithEmail() {
+      const email = document.getElementById('cta-email').value;
+      openModal(email);
     }
 
     function closeModal() {
-      document.getElementById("waitlist-modal").classList.add("hidden");
+      document.getElementById('waitlist-modal').classList.add('hidden');
+      document.body.style.overflow = '';
     }
 
-    document.getElementById("waitlist-form").addEventListener("submit", async function (e) {
+    // Close modal on backdrop click
+    document.getElementById('waitlist-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Form submit
+    document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
       e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      btn.textContent = 'Submitting…';
+      btn.disabled = true;
 
-      const name = document.querySelector('input[name="name"]').value;
-      const email = document.querySelector('input[name="email"]').value;
-      const country = document.querySelector('input[name="country"]').value;
-      const shopname = document.querySelector('input[name="shopname"]').value;
-
-      const data = {
-        data: { name, email, country, shopname }
-      };
+      const name = this.querySelector('[name="name"]').value;
+      const email = this.querySelector('[name="email"]').value;
+      const country = this.querySelector('[name="country"]').value;
+      const shopname = this.querySelector('[name="shopname"]').value;
 
       try {
         const res = await fetch("https://sheetdb.io/api/v1/801d34t740et7", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
+          body: JSON.stringify({ data: { name, email, country, shopname } })
         });
-
-        const result = await res.json();
         if (res.ok) {
-          document.getElementById("form-message").textContent = "✅ You're on the list!";
-          document.getElementById("form-message").classList.remove("hidden");
-          document.getElementById("waitlist-form").reset();
+          const msg = document.getElementById('form-message');
+          msg.textContent = "✅ You're on the list! We'll be in touch soon.";
+          msg.classList.remove('hidden');
+          msg.classList.add('msg-success');
+          this.reset();
+          btn.textContent = 'You\'re in!';
         } else {
-          throw new Error("Submission failed");
+          throw new Error();
         }
-      } catch (err) {
-        console.error("Error submitting:", err);
-        document.getElementById("form-message").textContent = "❌ Something went wrong. Try again.";
-        document.getElementById("form-message").classList.remove("hidden");
+      } catch {
+        const msg = document.getElementById('form-message');
+        msg.textContent = "❌ Something went wrong. Try again.";
+        msg.classList.remove('hidden');
+        btn.textContent = 'Secure My Spot →';
+        btn.disabled = false;
       }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Scroll-triggered fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.step, .feature-card, .usecase-card, .prob-stat, .platform-pill').forEach(el => {
+      el.classList.add('fade-up');
+      observer.observe(el);
     });
   </script>
 </body>
